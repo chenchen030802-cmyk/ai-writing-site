@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import requests
 
 app = Flask(__name__)
+CORS(app)  # 允许跨域访问
 
 API_KEY = "sk-96e256b6d051414bac8dc49f9129ccfe"
 
