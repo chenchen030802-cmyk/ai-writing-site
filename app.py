@@ -3,7 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-API_KEY = "这里填你的DeepSeek API Key"
+API_KEY = "sk-96e256b6d051414bac8dc49f9129ccfe"
 
 @app.route("/generate", methods=["POST"])
 def generate():
