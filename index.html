@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AI写作助手</title>
+</head>
+<body>
+
+<h2>AI写作助手</h2>
+
+<label>选择类型：</label>
+<select id="type">
+    <option>小学作文</option>
+    <option>初中作文</option>
+    <option>高中作文</option>
+    <option>检讨书</option>
+    <option>入党申请书</option>
+    <option>演讲稿</option>
+    <option>道歉信</option>
+    <option>情书</option>
+    <option>小红书文案</option>
+    <option>抖音文案</option>
+</select>
+
+<br><br>
+
+<label>请输入内容：</label><br>
+<textarea id="content" rows="6" cols="40"></textarea>
+
+<br><br>
+
+<button onclick="generate()">生成文章</button>
+
+<h3>生成结果：</h3>
+<div id="result"></div>
+
+<script>
+function generate() {
+    let type = document.getElementById("type").value;
+    let content = document.getElementById("content").value;
+
+    document.getElementById("result").innerText = "生成中...";
+
+    fetch("/generate", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            type: type,
+            content: content
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("result").innerText = data.result;
+    })
+    .catch(err => {
+        document.getElementById("result").innerText = "出错：" + err;
+    });
+}
+</script>
+
+</body>
+</html>
